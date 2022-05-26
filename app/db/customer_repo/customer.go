@@ -5,13 +5,16 @@ import (
 	"github.com/lakshaycoder01/server/app/models"
 )
 
-func Create(createData map[string]interface{}) error {
-
+func Create(createData map[string]interface{}) (*models.Customer, error) {
+	customer := new(models.Customer)
 	e := config.WriteDB().
 		Model(&models.Customer{}).
-		Create(createData).Error
+		Create(createData).
+		Where("email = ?", createData["email"].(string)).
+		First(customer).
+		Error
 
-	return e
+	return customer, e
 
 }
 

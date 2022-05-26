@@ -35,20 +35,25 @@ func FindProduct(productID int64) (*models.Products, error) {
 
 }
 
-func UpdateProductQuantity(productID int64, quantity int) error {
+func UpdateProductQuantity(productID int64, quantities int) error {
 	e := config.WriteDB().
 		Model(&models.Products{}).
 		Where("id = ?", productID).
-		Update("quantity = ", quantity).Error
+		Update("quantity", quantities).Error
 	return e
 }
 
-func CreateProduct(createData map[string]interface{}) error {
+func CreateProduct(createData map[string]interface{}) (*models.Products, error) {
+	product := new(models.Products)
 	e := config.ReadDB().
 		Model(&models.Products{}).
-		Create(createData).Error
+		Create(createData).
+		Where("brand = ?", createData["brand"]).
+		Where("name = ?", createData["name"]).
+		First(product).
+		Error
 
-	return e
+	return product, e
 }
 
 func FindSearchProducts(request *query.SearchProduct) ([]*models.Products, error) {

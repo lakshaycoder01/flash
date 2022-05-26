@@ -30,8 +30,10 @@ func BuyProduct(request *query.BuyProduct) (*query.Response, error) {
 	}
 
 	if product.Quantity <= 0 {
+		log.Info().Msgf("Product is out of stock")
 		response.Status = "failure"
-		response.Status = "Sorry we are out of quantity for this product"
+		response.Message = "Product is out of stock"
+		return response, nil
 	}
 
 	go func() {

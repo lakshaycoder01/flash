@@ -7,6 +7,11 @@ type AddProductRequest struct {
 	Quantity int     `json:"quantity"`
 }
 
+type AddCustomerRequest struct {
+	Name  string `json:"name"`
+	Email string `json:"email"`
+}
+
 type BuyProduct struct {
 	ProductID  int64 `json:"product_id"`
 	CustomerID int64 `json:"customer_id"`

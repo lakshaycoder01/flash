@@ -61,7 +61,7 @@ CREATE TABLE `customer` (
     `created_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `modified_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
-    KEY `i_customer_id` (`id`)`,
+    KEY `i_customer_id` (`id`),
     KEY `i_customer_name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -74,8 +74,8 @@ CREATE TABLE `products` (
     `created_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `modified_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
-    KEY `i_products_id` (`id`)`
-    KEY `i_products_name` (`name`)
+    KEY `i_products_id` (`id`),
+    KEY `i_products_name` (`name`),
     KEY `i_products_brand` (`brand`),
     KEY `i_products_price` (`price`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -91,7 +91,7 @@ CREATE TABLE `customer_product` (
     `created_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `modified_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
-    KEY `i_customer_product_id (`id`)`
+    KEY `i_customer_product_id (`id`),
     KEY `i_customer_product_customer_id` (`customer_id`)
     KEY `i_customer_product_product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

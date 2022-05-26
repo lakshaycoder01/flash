@@ -1,7 +1,6 @@
 package apis
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -11,16 +10,15 @@ import (
 	"github.com/phuslu/log"
 )
 
-func AddProduct(c echo.Context) error {
-	fmt.Println("hererererre")
+func AddCustomer(c echo.Context) error {
 
-	request := new(query.AddProductRequest)
+	request := new(query.AddCustomerRequest)
 
 	if e := c.Bind(request); e != nil {
 		return utils.ErrorResponse(c, http.StatusBadRequest, e)
 	}
 
-	response, e := service.AddProduct(request)
+	response, e := service.AddCustomer(request)
 	if e != nil {
 		log.Error().Err(e).Msgf("service.AddProduct:: Unable to add product to our system")
 		return utils.ErrorResponse(c, http.StatusBadGateway, e)
@@ -31,4 +29,5 @@ func AddProduct(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusAccepted, response)
+
 }

@@ -21,6 +21,7 @@ func addRoutes(e *echo.Echo) {
 }
 
 func addFlaskMonkRoutes(router *echo.Group) {
+	router.POST("/add_customer", apis.AddCustomer)
 	router.POST("/add_product", apis.AddProduct)
 	router.POST("/view_products", apis.ViewProduct)
 	router.POST("/buy_product", apis.BuyProduct)
