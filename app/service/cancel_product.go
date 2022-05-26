@@ -50,7 +50,7 @@ func CancelProduct(request *query.CancelProductRequest) (*query.Response, error)
 			return response, nil
 		}
 
-		if e := product_repo.UpdateProductQuantity(request.ProductID, request.Quantity); e != nil {
+		if e := product_repo.UpdateProductQuantity(request.ProductID, request.Quantity+product.Quantity); e != nil {
 			log.Error().Err(e).Msgf("customer_repo.FindCustomerUsingID:: Unable to find product")
 			response.Status = "failure"
 			response.Message = "unable to cancel product"

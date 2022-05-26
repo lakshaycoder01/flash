@@ -31,7 +31,7 @@ func FindProductwithCustomer(productID int64, customerID int64) (*models.Custome
 		Model(&models.CustomerProduct{}).
 		Where("product_id = ?", productID).
 		Where("customer_id = ?", customerID).
-		Where("status !=", "CANCELLED").
+		Where("status != ? ", "CANCELLED").
 		First(&product).Error
 
 	return product, e

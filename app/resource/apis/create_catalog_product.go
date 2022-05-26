@@ -27,7 +27,7 @@ func AddProduct(c echo.Context) error {
 	}
 
 	if response.Status == "failure" {
-		c.JSON(http.StatusBadRequest, response)
+		return c.JSON(http.StatusBadRequest, response)
 	}
 
 	return c.JSON(http.StatusAccepted, response)

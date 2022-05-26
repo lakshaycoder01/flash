@@ -1,6 +1,8 @@
 package product_repo
 
 import (
+	"fmt"
+
 	"github.com/lakshaycoder01/server/app/config"
 	"github.com/lakshaycoder01/server/app/models"
 	"github.com/lakshaycoder01/server/app/resource/query"
@@ -59,7 +61,7 @@ func CreateProduct(createData map[string]interface{}) (*models.Products, error) 
 func FindSearchProducts(request *query.SearchProduct) ([]*models.Products, error) {
 
 	products := make([]*models.Products, 0)
-
+	fmt.Println(request)
 	query := config.ReadDB().
 		Model(&models.Products{})
 
@@ -72,7 +74,7 @@ func FindSearchProducts(request *query.SearchProduct) ([]*models.Products, error
 	}
 
 	if request.ProductName != nil {
-		query = query.Where("price = ?", *request.Price)
+		query = query.Where("name = ?", *request.ProductName)
 	}
 
 	e := query.Find(&products).Error
